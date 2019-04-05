@@ -13,8 +13,14 @@
     "php": ">=5.6",
     "minime/annotations": "2.3.1",
     "ronasit/laravel-helpers": "1.1.*@beta",
-    "ronasit/local-data-collector": "~1.0.0"
+    "ronasit/local-data-collector": "dev-master"
   },
+  "repositories": [
+      {
+          "type": "vcs",
+          "url": "https://github.com/dobrynin-andrey/local-data-collector"
+      }
+  ],
   "autoload": {
     "psr-4": {
       "RonasIT\\Support\\AutoDoc\\": "src/"
