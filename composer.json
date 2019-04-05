@@ -18,11 +18,11 @@
   "repositories": [
       {
           "type": "vcs",
-          "url": "https://github.com/dobrynin-andrey/local-data-collector"
+          "url": "https://github.com/dobrynin-andrey/laravel-helpers"
       },
       {
           "type": "vcs",
-          "url": "https://github.com/dobrynin-andrey/laravel-helpers"
+          "url": "https://github.com/dobrynin-andrey/local-data-collector"
       }
   ],
   "autoload": {
