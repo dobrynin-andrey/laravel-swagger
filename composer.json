@@ -30,7 +30,7 @@
       "RonasIT\\Support\\AutoDoc\\": "src/"
     }
   },
-  "minimum-stability": "stable",
+  "minimum-stability": "dev",
   "extra": {
     "laravel": {
       "providers": [
