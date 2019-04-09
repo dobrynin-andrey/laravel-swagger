@@ -1,4 +1,4 @@
-# Laravel AutoDoc plugin 
+# Laravel AutoDoc plugin (Fork for Lumen)
 
 This plugin is designed to gather information and generate documentation about 
 your Rest-Api while passing the tests. The principle of operation is based on 

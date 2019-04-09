@@ -50,10 +50,10 @@ class SwaggerService
     {
         $this->setDataCollector();
 
-        if (config('app.env') == 'testing') {
+        if (app()->environment('testing')) {
             $this->container = $container;
 
-            $this->annotationReader = new AnnotationReader(new Parser, new ArrayCache);;
+            $this->annotationReader = new AnnotationReader(new Parser, new ArrayCache);
 
             $this->security = config('auto-doc.security');
 
@@ -176,9 +176,10 @@ class SwaggerService
     }
 
     protected function getUri() {
-        $uri = $this->request->route()->uri();
-        $basePath = preg_replace("/^\//", '', config('auto-doc.basePath'));
-        $preparedUri = preg_replace("/^{$basePath}/", '', $uri);
+        $uri = $this->request->getRequestUri();
+
+        $basePath = addcslashes(preg_replace("/^\//", '', config('auto-doc.basePath')), '/');
+        $preparedUri = preg_replace("/^\/{$basePath}/", '', $uri);
 
         return preg_replace("/^\//", '', $preparedUri);
     }
@@ -415,7 +416,7 @@ class SwaggerService
     }
 
     public function getConcreteRequest() {
-        $controller = $this->request->route()->getActionName();
+        $controller = $this->request->route()[1]['uses'];
 
         if ($controller == 'Closure') {
             return null;
@@ -430,11 +431,18 @@ class SwaggerService
         $route = $this->request->route();
 
         $parameters = $this->resolveClassMethodDependencies(
-            $route->parametersWithoutNulls(), $instance, $method
+            $this->parametersWithoutNulls(), $instance, $method
         );
 
         return array_first($parameters, function ($key, $parameter) {
             return preg_match('/Request/', $key);
+        });
+    }
+
+    public function parametersWithoutNulls()
+    {
+        return array_filter($this->request->all(), function ($p) {
+            return ! is_null($p);
         });
     }
 

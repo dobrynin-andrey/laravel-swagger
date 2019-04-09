@@ -9,7 +9,7 @@
 
 namespace RonasIT\Support\AutoDoc\Http\Controllers;
 
-use Illuminate\Routing\Controller as BaseController;
+use Laravel\Lumen\Routing\Controller as BaseController;
 use RonasIT\Support\AutoDoc\Services\SwaggerService;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
